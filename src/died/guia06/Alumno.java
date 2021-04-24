@@ -2,6 +2,7 @@ package died.guia06;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Alumno implements Comparable<Alumno> {
@@ -24,7 +25,7 @@ public class Alumno implements Comparable<Alumno> {
 	}
 
 	public void aprobar(Curso c) {
-		this.cursando.remove(c);
+		this.cursando = this.cursando.stream().filter((e) -> !c.equals(e)).collect(Collectors.toList());
 		this.aprobados.add(c);
 	}
 
@@ -39,6 +40,14 @@ public class Alumno implements Comparable<Alumno> {
 	@Override
 	public int compareTo(Alumno o) {
 		return this.nombre.compareToIgnoreCase(o.nombre);
+	}
+	
+	public String toString () {
+		return this.nroLibreta + " - " + this.nombre;
+	}
+
+	public long materiasInscripto(Integer cicloLectivo) {
+		return this.cursando.stream().filter((c) -> c.getCicloLectivo() == cicloLectivo).count();
 	}
 	
 
