@@ -70,4 +70,14 @@ public class Curso {
 	}
 
 
+	public Integer getCreditos() {
+		return creditos;
+	}
+
+
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
+
+
 }
